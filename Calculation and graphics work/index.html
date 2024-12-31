@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallis's Conical Edge</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #8e44ad, #3498db);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .inputContainer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .inputGroup {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .inputGroup label {
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .inputGroup input {
+            width: 80px;
+            padding: 8px;
+            border: none;
+            border-radius: 4px;
+            outline: none;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        input[type="number"] {
+            appearance: textfield;
+        }
+
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            appearance: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 4px;
+            background: #3498db;
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+
+        #canvas-holder {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+            max-width: 1400px;
+        }
+
+        canvas {
+            display: block;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #coordinates {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Wallis’s Conical Edge</h2>
+
+    <div class="inputContainer">
+        <div class="inputGroup">
+            <label for="VMax">V Max</label>
+            <input type="number" name="VMax" id="VMax" min="0" max="10" step="0.1" value="1">
+        </div>
+        <div class="inputGroup">
+            <label for="USteps">U Steps</label>
+            <input type="number" name="USteps" id="USteps" min="10" max="250" step="1" value="30">
+        </div>
+        <div class="inputGroup">
+            <label for="VSteps">V Steps</label>
+            <input type="number" name="VSteps" id="VSteps" min="10" max="250" step="1" value="30">
+        </div>
+    </div>
+
+    <div class="inputContainer">
+        <div class="inputGroup">
+            <label for="A">A</label>
+            <input type="number" name="A" id="A" min="0" max="250" step="1" value="1">
+        </div>
+        <div class="inputGroup">
+            <label for="B">B</label>
+            <input type="number" name="B" id="B" min="0" max="250" step="1" value="1">
+        </div>
+        <div class="inputGroup">
+            <label for="C">C</label>
+            <input type="number" name="C" id="C" min="0" max="250" step="1" value="1">
+        </div>
+    </div>
+    <div class="inputContainer">
+        <div class="inputGroup">
+            <label for="Angle">Angle</label>
+            <input type="range" name="Angle" id="Angle" min="0" max="360" step="1" value="0">
+        </div>
+    </div>
+
+    <p id="coordinates">Coordinates: (0, 0)</p>
+    <div id="canvas-holder">
+        <canvas id="uvcanvas" width="700" height="700"></canvas>
+        <canvas id="webglcanvas" width="700" height="700"></canvas>
+    </div>
+
+    <script defer type="module" src="./main.mjs"></script>
+    <script src="./shader.gpu"></script>
+    <script src="./Utils/m4.js"></script>
+</body>
+
+</html>
